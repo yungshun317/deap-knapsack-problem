@@ -1,7 +1,8 @@
 import numpy as np
 
 class Knapsack01Problem:
-    """This class encapsulates the Knapsack 0-1 Problem from RosettaCode.org
+    """
+    This class encapsulates the Knapsack 0-1 Problem from RosettaCode.org
     """
     def __init__(self):
         
@@ -12,8 +13,15 @@ class Knapsack01Problem:
         # Initialize the data
         self.__initData()
         
+    def __len__(self):
+        """
+        :return: the total number of items defined in the problem
+        """
+        return len(self.items)
+        
     def __initData(self):
-        """initializes the RosettaCode.org knapsack 0-1 problem data
+        """
+        Initializes the RosettaCode.org knapsack 0-1 problem data
         """
         self.items = [
             ("map", 9, 150),
@@ -41,3 +49,23 @@ class Knapsack01Problem:
         ]
         
         self.maxCapacity = 400
+        
+    def getValue(self, zeroOneList):
+        """
+        Calculates the value of the selected items in the list, while ignoring items that will cause the accumulating weight
+        to exceed the maximum weight
+        :param zeroOneList: a list of 0/1 values corresponding to the list of the problem's item. `1` means that item was
+        selected.
+        :return: the calculated value
+        """
+    
+        totalWeight = totalValue = 0
+        
+        for i in range(len(zeroOneList)):
+            item, weight, value = self.items[i]
+            if totalWeight + weight <= self.maxCapacity:
+                totalWeight += zeroOneList[i] * weight
+                totalValue += zeroOneList[i] * value
+        return totalValue
+    
+            
