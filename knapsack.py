@@ -87,4 +87,16 @@ class Knapsack01Problem:
                     print("- Adding {}: weight = {}, value = {}, accumulated weight = {}, accumulated value = {}".format(item, weight, value, totalWeight, totalValue))
                     print("- Total weight = {}, Total value = {}".format(totalWeight, totalValue))
     
-            
+# Testing the class
+def main():
+    # Create a problem instance
+    knapsack = Knapsack01Problem()
+    
+    # Create a random solution & evaluate it
+    randomSolution = np.random.randint(2, size=len(knapsack))
+    print("Random Solution = ")
+    print(randomSolution)
+    knapsack.printItems(randomSolution)
+
+if __name__ == "__main__":
+    main()
