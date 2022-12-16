@@ -68,4 +68,23 @@ class Knapsack01Problem:
                 totalValue += zeroOneList[i] * value
         return totalValue
     
+    def printItems(self, zeroOneList):
+        """
+        Print the selected items in the list, while ignoring items that will cause the accumulating weight 
+        to exceed the maximum weight
+        :param zeroOneList: a list of 0/1 values corresponding to the list of the problem's items. `1` means that item was
+        selected.
+        """
+        
+        totalWeight = totalValue = 0
+        
+        for i in range(len(zeroOneList)):
+            item, weight, value = self.items[i]
+            if totalWeight + weight <= self.maxCapacity:
+                if zeroOneList[i] > 0:
+                    totalWeight += weight
+                    totalValue += value
+                    print("- Adding {}: weight = {}, value = {}, accumulated weight = {}, accumulated value = {}".format(item, weight, value, totalWeight, totalValue))
+                    print("- Total weight = {}, Total value = {}".format(totalWeight, totalValue))
+    
             
